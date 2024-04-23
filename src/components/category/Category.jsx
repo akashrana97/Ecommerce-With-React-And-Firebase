@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 // category
 const category = [
   {
@@ -33,28 +35,50 @@ const category = [
     name: "books",
   },
 ];
-import React from "react";
 
 const Category = () => {
+  // naviaget
+  const navigate = useNavigate();
   return (
-    <div className="flex justify-center overflow-x-auto mt-5 scrollbar-hide">
-      {category.map((item, index) => (
-        <div
-          key={index}
-          className="flex-shrink-0 flex flex-col items-center mx-4 lg:mx-6"
-        >
-          <div className="w-20 h-20 lg:w-24 lg:h-24 bg-pink-500 rounded-full overflow-hidden transition-all hover:bg-pink-400 cursor-pointer">
-            <img
-              src={item.image}
-              alt={item.name}
-              className="w-full h-full object-cover"
-            />
+    <div>
+      <div className="flex flex-col mt-5">
+        {/* main 1 */}
+        <div className="flex overflow-x-scroll lg:justify-center  hide-scroll-bar">
+          {/* main 2  */}
+          <div className="flex ">
+            {/* category  */}
+            {category.map((item, index) => {
+              return (
+                <div key={index} className="px-3 lg:px-10">
+                  {/* Image  */}
+                  <div
+                    onClick={() => navigate(`/category/${item.name}`)}
+                    className=" w-16 h-16 lg:w-24 lg:h-24 max-w-xs rounded-full  bg-pink-500 transition-all hover:bg-pink-400 cursor-pointer mb-1 "
+                  >
+                    <div className="flex justify-center mb-12">
+                      {/* Image tag  */}
+                      <img src={item.image} alt="img" />
+                    </div>
+                  </div>
+
+                  {/* Name Text  */}
+                  <h1 className=" text-sm lg:text-lg text-center font-medium title-font first-letter:uppercase ">
+                    {item.name}
+                  </h1>
+                </div>
+              );
+            })}
           </div>
-          <h1 className="text-xs lg:text-sm text-center mt-2 font-medium capitalize">
-            {item.name}
-          </h1>
         </div>
-      ))}
+      </div>
+
+      {/* style  */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html:
+            "\n.hide-scroll-bar {\n  -ms-overflow-style: none;\n  scrollbar-width: none;\n}\n.hide-scroll-bar::-webkit-scrollbar {\n  display: none;\n}\n",
+        }}
+      />
     </div>
   );
 };
