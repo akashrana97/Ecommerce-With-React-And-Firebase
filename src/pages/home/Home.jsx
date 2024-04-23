@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Category from "../../components/category/Category";
 import HeroSection from "../../components/heroSection/HeroSection";
 import HomePageProductCard from "../../components/homePageProductCard/HomePageProductCard";
